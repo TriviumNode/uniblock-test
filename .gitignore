@@ -1,0 +1,5 @@
+node_modules
+.env
+single.json
+multi.json
+example.json
