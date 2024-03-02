@@ -1,8 +1,8 @@
-import axios from "./axiosInstance";
-import { NftBalance, NftTransfer, TokenAllowance, TokenBalanceWithMetadata, Transaction } from "./uniblockResponseTypes";
+import axios from "./common/axiosInstance";
+import { NftBalance, NftTransfer, TokenAllowance, TokenBalanceWithMetadata, Transaction } from "./uniblock/uniblockResponseTypes";
 import fs from 'fs';
-import { sleep } from "./utils";
-import { getNftBalance, getNftTransfers, getTokenAllowances, getTokenBalances, getTransactions } from "./uniblockQueries";
+import sleep from "./common/sleep";
+import { getNftBalance, getNftTransfers, getTokenAllowances, getTokenBalances, getTransactions } from "./uniblock/uniblockQueries";
 
 export type ChainReport = {
     chain: string;
@@ -35,6 +35,7 @@ const ChainMap = new Map([
     // ['80001', 'Mumbai Testnet'],
 ])
 
+// Generate and return an AddressReport for a single address
 export const processAddress = async (walletAddress = '0xf0c1E3f2c215a7CEb9E241950AcC7cE1434c5B0F'): Promise<AddressReport> => {
     const reportDate = new Date();
 
@@ -61,7 +62,7 @@ export const processAddress = async (walletAddress = '0xf0c1E3f2c215a7CEb9E24195
         const nftTransfers = await getNftTransfers(walletAddress, chainId);
         await sleep(500);
 
-        const transactions = await getTransactions(walletAddress, chainId); //SLOW AF
+        const {transactions} = await getTransactions(walletAddress, chainId); //SLOW AF
         await sleep(500);
         // const transactions: any[] = [];
 

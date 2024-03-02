@@ -74,3 +74,53 @@ export type Transaction = {
     successful: boolean;
 }
 
+
+export type TokenMetadataResponse = {
+    name: string
+    symbol: string
+    logo: string
+    decimals: string
+    rawData: {
+      data: {
+        address: string
+        updated_at: string
+        next_update_at: string
+        quote_currency: string
+        chain_id: number
+        chain_name: string
+        items: Array<{
+          contract_decimals: number
+          contract_name: string
+          contract_ticker_symbol: string
+          contract_address: string
+          supports_erc?: Array<string>
+          logo_url: string
+          contract_display_name: string
+          logo_urls: {
+            token_logo_url: string
+            protocol_logo_url: any
+            chain_logo_url: string
+          }
+          last_transferred_at?: string
+          native_token: boolean
+          type: string
+          is_spam: boolean
+          balance: string
+          balance_24h: string
+          quote_rate?: number
+          quote_rate_24h?: number
+          quote?: number
+          pretty_quote?: string
+          quote_24h?: number
+          pretty_quote_24h?: string
+          protocol_metadata: any
+          nft_data: any
+        }>
+        pagination: any
+      }
+      error: boolean
+      error_message: any
+      error_code: any
+    }
+}
+  

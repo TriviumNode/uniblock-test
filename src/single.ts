@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { processAddress } from "./processAddress";
 
+// Generate a report for a single address
 const main = async () => {
     const result = await processAddress('0x2c9a43Ac885C6B5a10f9DA5e9Ad2C46311E3e027');
 
